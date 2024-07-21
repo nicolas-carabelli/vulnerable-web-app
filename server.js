@@ -9,6 +9,23 @@ var express = require('express'),
     subdomain = require('express-subdomain'),
     crypto = require('crypto'),
     fs = require('fs')
+    bodyParser = require('body-parser'),
+    session = require('express-session');
+
+// Configuración de body-parser
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Configuración de express-session
+app.use(session({
+    name: 'sid',
+    secret: 'supersecretsecur3passw0rd',
+    cookie: {
+        httpOnly: false,
+        maxAge: 60000 * 60 * 24
+    },
+    resave: false,
+    saveUninitialized: true
+}));
 
 // const PORT = 8080;
 // const HOST = '0.0.0.0' || 'localhost';
